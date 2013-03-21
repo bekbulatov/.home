@@ -1,3 +1,18 @@
-Create symlinks:
+Install
+=======
 
-    find -mindepth 1 -maxdepth 1 -not \( -name .git \) -not \( -name README \) -print -exec sh -c 'ln -s "$(readlink -e $@)" $HOME/$@' _ {} \;
+Clone repo
+
+    $ git clone https://github.com/bekbulatov/.home.git
+    
+Create symlinks
+
+    $ find -mindepth 1 -maxdepth 1 -not \( -name .git \) -not \( -name README \) -print -exec sh -c 'ln -s "$(readlink -e $@)" $HOME/$@' _ {} \;
+
+Put this line in the end of `~/.bashrc`
+
+    [ -f ~/.bashrc_custom ] && source ~/.bashrc_custom
+
+Read it
+
+    $ . ~/.bashrc

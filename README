@@ -1,0 +1,3 @@
+Create symlinks:
+
+    find -mindepth 1 -maxdepth 1 -not \( -name .git \) -not \( -name README \) -print -exec sh -c 'ln -s "$(readlink -e $@)" $HOME/$@' _ {} \;

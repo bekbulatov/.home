@@ -1,0 +1,15 @@
+# .bash_aliases
+
+# dir list
+alias ls='ls -FG --color=auto'
+alias ll='ls -l'
+alias la='ll -A'
+alias l='ls -CF'
+
+#  search
+alias grep='grep --color'
+alias rgrep='grep -r'
+
+# pager
+alias less='less -M'
+

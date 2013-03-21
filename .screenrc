@@ -1,0 +1,75 @@
+##    Explanation of hardstatus line    ##
+
+# Note the embeded space after the colon, I feel
+#  it just looks nicer with a blank between the
+#  text and console edge:
+#   '%{=b}%{G} Screens: '
+
+# This prints the window listing in blue:
+#   '%{b}%w'
+
+# This right-aligns what follows:
+#   '%='
+
+# This displays the time (hours and minutes) in 12hr format
+# and adds an AM/PM flag, in bold green:
+#   '%{G}%C%A'
+
+# This displays the day of the week:
+#   '%D'
+
+#This displays the date in Mon/day/year format:
+# and again I embeded a space to give me one space
+# between the text and console edge:
+#  '%M/%d/%Y '
+
+# The resultsing command give you a status line that
+#  looks like this:
+#   | Screens: 0* bash  <blanks zapped>         5:30PM  Fri, Jun/25/2004 |
+#  (The pipes indicate the edges of the xterm/console).
+
+# Green text, time, and date; windows in blue:
+# hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
+hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%c:%s "
+
+# Turn off start message:
+startup_message off
+
+# enable UTF-8
+defutf8 on
+
+# настройка режим управления потоком окна.
+defflow on
+
+# включает login-режим (для обновления /var/run/utmp)
+deflogin on
+
+# выключает использование или эмуляцию hardstatus-строки терминала
+# хотя можно использовать вместо caption
+hardstatus off
+
+# собственно включаем монитор активности, если off то включается командой ^a M
+defmonitor on
+
+# при копировании строки будут разделяться символами CR — LF
+crlf off
+
+# Disable startup message
+startup_message off
+
+# цвет фона при очистке, кстати имя терминала тоже меняется
+# поэтому настройку клавиатуры zsh надо проводить отдельно
+defbce on
+
+# Atomatic detack died sessions
+autodetach on
+
+# поддержка alternate screen, типо отчистка экрана при выходе из манов и пр.
+altscreen on
+
+# настройки для xterm
+term xterm-color
+termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+termcapinfo xterm* ti@:te@
+termcapinfo xterm* bc@:bs@
+

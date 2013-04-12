@@ -9,7 +9,12 @@ export PAGER=less
 export PYTHONSTARTUP=~/.pythonstartup
 
 # git
+PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWCOLORHINTS=1
 [ -f ~/.git-completion ] && source ~/.git-completion
+[ -f ~/.git-prompt ] && source ~/.git-prompt
 
 # bash aliases
 [ -f ~/.bashrc_aliases ] && source ~/.bashrc_aliases

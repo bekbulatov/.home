@@ -23,14 +23,9 @@
 # between the text and console edge:
 #  '%M/%d/%Y '
 
-# The resultsing command give you a status line that
-#  looks like this:
-#   | Screens: 0* bash  <blanks zapped>         5:30PM  Fri, Jun/25/2004 |
-#  (The pipes indicate the edges of the xterm/console).
-
-# Green text, time, and date; windows in blue:
-# hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
-hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%c:%s "
+# Red hostname, green text, time, and date; windows in blue:
+# hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%c:%s "
+hardstatus alwayslastline "%{=b}%{G} %H: %{B}%w %=%{kG}%c:%s "
 
 # Turn off start message:
 startup_message off
@@ -44,6 +39,9 @@ defflow on
 # включает login-режим (для обновления /var/run/utmp)
 deflogin on
 
+# big scrollback buffer
+defscrollback 10000
+
 # выключает использование или эмуляцию hardstatus-строки терминала
 # хотя можно использовать вместо caption
 hardstatus off
@@ -54,14 +52,11 @@ defmonitor on
 # при копировании строки будут разделяться символами CR — LF
 crlf off
 
-# Disable startup message
-startup_message off
-
 # цвет фона при очистке, кстати имя терминала тоже меняется
 # поэтому настройку клавиатуры zsh надо проводить отдельно
 defbce on
 
-# Atomatic detack died sessions
+# Atomatic detach died sessions
 autodetach on
 
 # поддержка alternate screen, типо отчистка экрана при выходе из манов и пр.
@@ -72,4 +67,10 @@ term xterm-color
 termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 termcapinfo xterm* ti@:te@
 termcapinfo xterm* bc@:bs@
+
+# control-left and control-right switch windows
+# bindkey ^[[d prev # previous with shift-Left arrow
+# bindkey ^[[c next # next with shift-Right arrow
+# bindkey ^[H prev # previous with alt-shift-h
+# bindkey ^[L next # next with alt-shift-l
 

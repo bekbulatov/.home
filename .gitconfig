@@ -32,7 +32,8 @@
     st = status
     br = branch
     df = diff
-    hist = log --pretty=format:'%Cred%h%Creset %ad | %Cgreen%s%d%Creset [%an]' --graph --date=short
+    # hist = log --pretty=format:'%Cred%h%Creset %ad | %Cgreen%s%d%Creset [%an]' --graph --date=short
+    hist = log --oneline --all --graph --decorate
     mg = merge --no-ff
     ph = push --tags
     ls = ls-files

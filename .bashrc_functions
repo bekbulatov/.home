@@ -128,4 +128,22 @@ echo "'$1' is not a valid file"
 
     less1251 () { iconv -f CP1251 -t UTF-8 "$1" | less; }
 
+    pull-all () {
+        START=$(git branch | grep '\*' | sed 's/^.//');
+        for i in $(git branch | sed 's/^.//'); do
+            git checkout $i;
+            git pull origin $i || break;
+        done;
+        git checkout $START;
+    };
+
+    sync-all () {
+        START=$(git branch | grep '\*' | sed 's/^.//' | grep -v master);
+        for i in $(git branch | sed 's/^.//'); do
+            git checkout $i;
+            git mg master || break;
+        done;
+        git checkout $START;
+    };
+
 #}}}

@@ -1,6 +1,6 @@
 [user]
-	email = a.bekbulatov@corp.mail.ru
-	name = bekbulatov
+    email = a.bekbulatov@corp.mail.ru
+    name = bekbulatov
 
 [color]
     ui = auto
@@ -37,6 +37,9 @@
     mg = merge --no-ff
     ph = push --tags
     ls = ls-files
+    dta = !sh -c 'git tag -a \"$1\" -m \"`date +"%d.%m"`\"' -
+    dtl = !sh -c 'git tag | grep -P \"^\\d\" | sort -rn -t. -k1,1 -k2,1 -k3,1 | head -n1' -
+    dtd = !sh -c 'git log $1..$2 --oneline | egrep -o \"\\w+-[0-9]+\" | sort | uniq' -
 
 [merge]
     tool = vimdiff

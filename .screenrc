@@ -68,9 +68,6 @@ termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 termcapinfo xterm* ti@:te@
 termcapinfo xterm* bc@:bs@
 
-# control-left and control-right switch windows
-# bindkey ^[[d prev # previous with shift-Left arrow
-# bindkey ^[[c next # next with shift-Right arrow
-# bindkey ^[H prev # previous with alt-shift-h
-# bindkey ^[L next # next with alt-shift-l
-
+# shift-left and shift-right switch windows
+bindkey ^[[1;2C next
+bindkey ^[[1;2D prev

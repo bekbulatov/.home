@@ -8,15 +8,26 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle "gmarik/vundle"
-Bundle "fholgado/minibufexpl.vim"
+" Bundle "fholgado/minibufexpl.vim"
+" Bundle "techlivezheng/vim-plugin-minibufexpl"
+Bundle "jlanzarotta/bufexplorer"
 Bundle "scrooloose/nerdtree"
 " Bundle 'kien/ctrlp.vim.git'
-" Bundle 'vim-scripts/bufexplorer.zip'
+" Bundle 'davidhalter/jedi-vim'
 
-Bundle "davidhalter/jedi-vim"
-Bundle "nvie/vim-flake8"
+Bundle "tpope/vim-surround"
 
-" Bundle "vim-colorschemes"
+Bundle "altercation/vim-colors-solarized"
+Bundle "bling/vim-airline"
+Bundle "tpope/vim-fugitive"
+
+" Python
+	Bundle "django.vim"
+	Bundle "nvie/vim-flake8"
+	Bundle "python.vim"
+
+" HTML
+	Bundle "othree/html5.vim"
 
 filetype plugin indent on
 
@@ -31,20 +42,26 @@ set gdefault " always global regex
 set nobackup " do not create backup files
 set noswapfile " do not create swap files
 set nofoldenable " turn off folding
+set wildmode=list:longest,full   " Автодополнение на манер zsh
 set wildmenu " turn on wildmenu
 set wcm=<Tab> " wildmenu navigation key
 set laststatus=2 " status line is always visible
 set winminheight=0 " minimum window height (FIXME)
 set scrolloff=3 " lines count around cursos
 set background=dark " we want dark and scary interface
-set hidden " make Vim more liberal about hidden buffer
+set hidden " this allows to edit several files in the same time without having to save them
 
-set paste
+" set paste
 set ignorecase
 set smartcase
 
 set wrap "Переносим на другую строчку
 set linebreak "Разрываем строки
+
+set cursorline          " Подсветка строки, в которой находится в данный момент курсор
+set splitbelow " новый сплит будет ниже текущего :sp
+set splitright " новый сплит будет правее текущего :vsp
+
 
 " tabulation settings
 " -------------------
@@ -56,8 +73,7 @@ set smarttab
 set autoindent
 
 autocmd FileType python setlocal expandtab " convert tabs to spaces
-
-
+autocmd BufRead,BufNewFile *.html if  search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 
 
 " allow backspacing over everything in insert mode
@@ -74,8 +90,9 @@ set wildignore+=.git,*.o,*.pyc,.DS_Store
 set fillchars=vert:\ ,fold:-
 
 " chars for showing inwisible symbols
-" set listchars=tab:>>,eol:$,trail:.
 set listchars=tab:▸\ ,eol:¬
+
+set showmatch       " показываем открывающие и закрывающие скобки
 
 " autocomplete with <Tab> key
 function InsertTabWrapper()
@@ -87,6 +104,33 @@ function InsertTabWrapper()
     endif
 endfunction
 imap <tab> <c-r>=InsertTabWrapper()<CR>
+
+" http://www.allaboutvim.ru/2012/03/blog-post.html
+       set isfname+=-
+       set path=.,,,
+       set path+=$PATH_BACK/**
+       set path+=$PATH_FRONT/**
+
+
+" Приводим в порядок status line
+
+       function! FileSize()
+           let bytes = getfsize(expand("%:p"))
+           if bytes <= 0
+               return ""
+           endif
+           if bytes < 1024
+               return bytes . "B"
+           else
+               return (bytes / 1024) . "K"
+           endif
+       endfunction
+
+       function! CurDir()
+           return expand('%:p:~')
+       endfunction
+
+
 
 
 
@@ -105,15 +149,15 @@ map <leader>f :NERDTreeToggle<CR> " toggle by \f
 
 " MiniBufExpl
 " -----------
-nmap <C-n> :bnext<CR>
-nmap <C-p> :bprev<CR>
+nmap <leader>n :bnext<CR>
+nmap <leader>p :bprev<CR>
+nmap <leader>q :bd<CR>
 
 
-" Color sheme
-" -----------
-syntax on
-colorscheme desert256 "Цветовая схема
-set t_Co=256
+" Jedi vim
+" ----------
+
+" let g:jedi#popup_on_dot = 0
 
 
 
@@ -126,7 +170,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 """"Дальше мои личные настройки,
 """"в принципе довольно обычные, может кому надо
 
-" set mousehide "Спрятать курсор мыши когда набираем текст
+set mousehide "Спрятать курсор мыши когда набираем текст
 " set mouse=a "Включить поддержку мыши
 " set termencoding=utf-8 "Кодировка терминала
 " set novisualbell "Не мигать
@@ -136,10 +180,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 " set foldcolumn=1 "Колоночка, чтобы показывать плюсики для скрытия блоков кода:
 "
 
-nmap \ll :set list!<CR>  " Shortcut to rapidly toggle `set list`
-nmap \l :setlocal number!<CR> " turn on/off numbers
-nmap \o :set paste!<CR> " Ctrl-V
-nmap \q :nohlsearch<CR>
+nmap <leader>ll :set list!<CR>  " Shortcut to rapidly toggle `set list`
+nmap <leader>l :setlocal number!<CR> " turn on/off numbers
+nmap <leader>o :set paste!<CR> " Ctrl-V
+nmap <leader>hl :nohlsearch<CR>
 
 
 " Edit commands http://vimcasts.org/episodes/the-edit-command/
@@ -164,3 +208,23 @@ autocmd BufReadPost *
 
 
 " nmap <C-e> :e#<CR>
+
+" Цветовая схема
+    syntax enable
+	set t_Co=256
+    set background=dark
+    let g:solarized_termcolors=256
+    colorscheme solarized
+
+
+" Airline {{{
+	" let g:airline_theme='jellybeans'
+	" let g:airline_theme='bubblegum'
+	let g:airline_theme='solarized'
+	let g:airline_powerline_fonts = 1
+	let g:airline#extensions#tabline#enabled = 1
+	" let g:airline_section_b='%{getcwd()}'
+	let g:airline#extensions#whitespace#checks = [ 'trailing' ]
+	let g:airline#extensions#ctrlp#color_template = 'normal'
+	let g:airline#extensions#ctrlp#show_adjacent_modes = 1
+" }}}

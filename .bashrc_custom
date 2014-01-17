@@ -26,6 +26,7 @@ export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWCOLORHINTS=1
 [ -f ~/.git-completion ] && source ~/.git-completion
 [ -f ~/.git-prompt ] && source ~/.git-prompt
+[ -f ~/.django-completion ] && source ~/.django-completion
 
 # bash aliases
 [ -f ~/.bashrc_aliases ] && source ~/.bashrc_aliases

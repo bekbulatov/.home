@@ -8,7 +8,7 @@ Clone repo
 Create symlinks
 
     $ cd .home
-    $ find -mindepth 1 -maxdepth 1 -not \( -name .git \) -not \( -name README \) -print -exec sh -c 'ln -s "$(readlink -e $@)" $HOME/$@' _ {} \;
+    $ find -mindepth 1 -maxdepth 1 -not \( -name .git \) -not \( -name README \) -print -exec sh -c 'ln -s "$(readlink -e $@)" $(readlink -m $HOME/$@)' _ {} \;
 
 Put this line in the end of `~/.bashrc`
 

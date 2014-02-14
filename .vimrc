@@ -16,10 +16,18 @@ Bundle "scrooloose/nerdtree"
 " Bundle 'davidhalter/jedi-vim'
 
 Bundle "tpope/vim-surround"
+Bundle "tpope/vim-repeat"
+Bundle "sjl/gundo.vim"
 
-Bundle "altercation/vim-colors-solarized"
-Bundle "bling/vim-airline"
-Bundle "tpope/vim-fugitive"
+nnoremap <F5> :GundoToggle<CR>
+map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+Bundle "scrooloose/syntastic"
+
+" Interface
+	Bundle "altercation/vim-colors-solarized"
+	Bundle "bling/vim-airline"
+	Bundle "tpope/vim-fugitive"
 
 " Python
 	Bundle "django.vim"
@@ -92,7 +100,7 @@ set fillchars=vert:\ ,fold:-
 " chars for showing inwisible symbols
 set listchars=tab:▸\ ,eol:¬
 
-set showmatch       " показываем открывающие и закрывающие скобки
+" set showmatch       " показываем открывающие и закрывающие скобки
 
 " autocomplete with <Tab> key
 function InsertTabWrapper()
@@ -183,7 +191,7 @@ set mousehide "Спрятать курсор мыши когда набирае�
 nmap <leader>ll :set list!<CR>  " Shortcut to rapidly toggle `set list`
 nmap <leader>l :setlocal number!<CR> " turn on/off numbers
 nmap <leader>o :set paste!<CR> " Ctrl-V
-nmap <leader>hl :nohlsearch<CR>
+nmap <leader>h :nohlsearch<CR>
 
 
 " Edit commands http://vimcasts.org/episodes/the-edit-command/

@@ -47,3 +47,5 @@
 	sslVerify = false
 [pack]
 	threads = 1
+[push]
+	default = simple

@@ -28,6 +28,7 @@ Bundle "scrooloose/syntastic"
 	Bundle "altercation/vim-colors-solarized"
 	Bundle "bling/vim-airline"
 	Bundle "tpope/vim-fugitive"
+	Bundle "jeetsukumaran/vim-markology"
 
 " Python
 	Bundle "django.vim"

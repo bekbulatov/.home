@@ -163,21 +163,8 @@ nmap <leader>p :bprev<CR>
 nmap <leader>q :bd<CR>
 
 
-" Jedi vim
-" ----------
-
-" let g:jedi#popup_on_dot = 0
-
-
-
-
 "Перед сохранением вырезаем пробелы на концах
 autocmd BufWritePre * :%s/\s\+$//e
-"В .py файлах включаем умные отступы после ключевых слов
-" autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-""""Дальше мои личные настройки,
-""""в принципе довольно обычные, может кому надо
 
 set mousehide "Спрятать курсор мыши когда набираем текст
 " set mouse=a "Включить поддержку мыши
@@ -187,22 +174,13 @@ set mousehide "Спрятать курсор мыши когда набирае�
 " set backspace=indent,eol,start whichwrap+=<,>,[,] "Удобное поведение backspace
 " set showtabline=0 "Вырубаем черточки на табах
 " set foldcolumn=1 "Колоночка, чтобы показывать плюсики для скрытия блоков кода:
-"
 
 nmap <leader>ll :set list!<CR>  " Shortcut to rapidly toggle `set list`
 nmap <leader>l :setlocal number!<CR> " turn on/off numbers
 nmap <leader>o :set paste!<CR> " Ctrl-V
 nmap <leader>h :nohlsearch<CR>
 
-
 " Edit commands http://vimcasts.org/episodes/the-edit-command/
-" ------------------------------------------------------------
-" cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-" map <leader>ew :e %%
-" map <leader>es :sp %%
-" map <leader>ev :vsp %%
-" map <leader>et :tabe %%
-
 map <leader>ew :e <C-R>=expand("%:h") . "/" <CR>
 map <leader>es :sp <C-R>=expand("%:h") . "/" <CR>
 map <leader>ev :vsp <C-R>=expand("%:h") . "/" <CR>
@@ -216,24 +194,25 @@ autocmd BufReadPost *
 	\ endif
 
 
-" nmap <C-e> :e#<CR>
-
 " Цветовая схема
     syntax enable
-	set t_Co=256
+    set t_Co=256
     set background=dark
     let g:solarized_termcolors=256
     colorscheme solarized
 
 
 " Airline {{{
-	" let g:airline_theme='jellybeans'
-	" let g:airline_theme='bubblegum'
 	let g:airline_theme='solarized'
 	let g:airline_powerline_fonts = 1
 	let g:airline#extensions#tabline#enabled = 1
-	" let g:airline_section_b='%{getcwd()}'
 	let g:airline#extensions#whitespace#checks = [ 'trailing' ]
 	let g:airline#extensions#ctrlp#color_template = 'normal'
 	let g:airline#extensions#ctrlp#show_adjacent_modes = 1
 " }}}
+
+" Disable arrows
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>

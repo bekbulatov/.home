@@ -3,11 +3,12 @@ Install
 
 Clone repo
 
+    $ cd ~
     $ git clone https://github.com/bekbulatov/.home.git
     
 Create symlinks
 
-    $ cd .home
+    $ cd ~/.home
     $ find -mindepth 1 -maxdepth 1 -not \( -name .git \) -not \( -name README \) -print -exec sh -c 'ln -s "$(readlink -e $@)" $(readlink -m $HOME/$@)' _ {} \;
 
 Put this line in the end of `~/.bashrc`

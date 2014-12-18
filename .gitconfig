@@ -49,3 +49,7 @@
 	threads = 1
 [push]
 	default = simple
+[pager]
+	log = ~/bin/diff-highlight | less
+	show = ~/bin/diff-highlight | less
+	diff = ~/bin/diff-highlight | less

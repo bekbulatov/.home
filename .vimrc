@@ -82,7 +82,8 @@ set smarttab
 set autoindent
 
 autocmd FileType python setlocal expandtab " convert tabs to spaces
-autocmd BufRead,BufNewFile *.html if  search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
+autocmd BufRead,BufNewFile *.html if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
+autocmd BufRead,BufNewFile *.xml if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 
 
 " allow backspacing over everything in insert mode
@@ -216,3 +217,8 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+iab pdb import pdb; pdb.set_trace()
+iab utf! # -*- coding: utf-8 -*-
+
+set colorcolumn=80

@@ -12,4 +12,3 @@ alias rgrep='grep -r'
 
 # pager
 alias less='less -M'
-

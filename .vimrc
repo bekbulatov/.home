@@ -28,7 +28,7 @@ Bundle "scrooloose/syntastic"
 	Bundle "altercation/vim-colors-solarized"
 	Bundle "bling/vim-airline"
 	Bundle "tpope/vim-fugitive"
-	Bundle "jeetsukumaran/vim-markology"
+	" Bundle "jeetsukumaran/vim-markology"
 
 " Python
 	Bundle "django.vim"
@@ -221,4 +221,4 @@ noremap <Right> <NOP>
 iab pdb import pdb; pdb.set_trace()
 iab utf! # -*- coding: utf-8 -*-
 
-set colorcolumn=80
+" set colorcolumn=80

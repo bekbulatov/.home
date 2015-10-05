@@ -4,40 +4,39 @@ set nocompatible " use Vim settings, rather then Vi settings (much better!)
 " ---------------
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle "gmarik/vundle"
-" Bundle "fholgado/minibufexpl.vim"
-" Bundle "techlivezheng/vim-plugin-minibufexpl"
-Bundle "jlanzarotta/bufexplorer"
-Bundle "scrooloose/nerdtree"
-" Bundle 'kien/ctrlp.vim.git'
-" Bundle 'davidhalter/jedi-vim'
+Plugin 'gmarik/vundle'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'scrooloose/nerdtree'
 
-Bundle "tpope/vim-surround"
-Bundle "tpope/vim-repeat"
-Bundle "sjl/gundo.vim"
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'sjl/gundo.vim'
 
 nnoremap <F5> :GundoToggle<CR>
 map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 
-Bundle "scrooloose/syntastic"
+Plugin 'scrooloose/syntastic'
 
 " Interface
-	Bundle "altercation/vim-colors-solarized"
-	Bundle "bling/vim-airline"
-	Bundle "tpope/vim-fugitive"
-	" Bundle "jeetsukumaran/vim-markology"
+	Plugin 'altercation/vim-colors-solarized'
+	Plugin 'bling/vim-airline'
+	Plugin 'tpope/vim-fugitive'
 
 " Python
-	Bundle "django.vim"
-	Bundle "nvie/vim-flake8"
-	Bundle "python.vim"
+	Plugin 'django.vim'
+	Plugin 'nvie/vim-flake8'
+	Plugin 'python.vim'
+
+" Go
+	Plugin 'fatih/vim-go'
 
 " HTML
-	Bundle "othree/html5.vim"
+	Plugin 'othree/html5.vim'
 
+call vundle#end()
 filetype plugin indent on
 
 " Some simple stuff

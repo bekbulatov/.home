@@ -40,3 +40,8 @@ Put this line in the end of `~/.bash_profile`
 Read it
 
     . ~/.bash_profile
+    
+VIM plugins setup
+
+   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+   vim +PluginInstall +qall

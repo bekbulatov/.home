@@ -25,7 +25,6 @@ Create symlinks
 	ln -s ~/.home/.screenrc          ~/.screenrc
 	ln -s ~/.home/sublime-text-2     ~/sublime-text-2
 	ln -s ~/.home/.tmux.conf         ~/.tmux.conf
-	ln -s ~/.home/.vim               ~/.vim
 	ln -s ~/.home/.vimrc             ~/.vimrc
 
 Put this line in the end of `~/.bash_profile`

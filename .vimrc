@@ -21,8 +21,10 @@ map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 Plugin 'scrooloose/syntastic'
 
 " Interface
+	Plugin 'vim-airline/vim-airline'
+	Plugin 'vim-airline/vim-airline-themes'
+
 	Plugin 'altercation/vim-colors-solarized'
-	Plugin 'bling/vim-airline'
 	Plugin 'tpope/vim-fugitive'
 
 " Python

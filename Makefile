@@ -15,6 +15,7 @@ uninstall-git:
 	rm -f ~/.gitconfig
 	rm -f ~/.gitignore
 	rm -f ~/.git-prompt
+	rm -f ~/bin/diff-highlight
 
 install-vim:
 	ln -sf ~/.home/.vimrc ~/.vimrc

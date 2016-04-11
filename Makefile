@@ -11,10 +11,10 @@ install-git:
 	ln -sf ~/.home/bin/diff-highlight ~/bin/diff-highlight
 
 uninstall-git:
-	rm ~/.git-completion
-	rm ~/.gitconfig
-	rm ~/.gitignore
-	rm ~/.git-prompt
+	rm -f ~/.git-completion
+	rm -f ~/.gitconfig
+	rm -f ~/.gitignore
+	rm -f ~/.git-prompt
 
 install-vim:
 	ln -sf ~/.home/.vimrc ~/.vimrc
@@ -22,20 +22,20 @@ install-vim:
 	vim +PluginInstall +qall
 
 uninstall-vim:
-	rm ~/.vimrc
-	rm -r ~/.vim
+	rm -f ~/.vimrc
+	rm -rf ~/.vim
 
 install-tmux:
 	ln -sf ~/.home/.tmux.conf ~/.tmux.conf
 
 uninstall-tmux:
-	rm ~/.tmux.conf
+	rm -f ~/.tmux.conf
 
 install-screen:
 	ln -sf ~/.home/.screenrc ~/.screenrc
 
 uninstall-screen:
-	rm ~/.screenrc
+	rm -f ~/.screenrc
 
 install-mysql:
 	ln -sf ~/.home/.my.cnf ~/.my.cnf
@@ -47,12 +47,12 @@ install-mysql:
 	ln -sf ~/.home/bin/grcat ~/bin/grcat
 
 uninstall-mysql:
-	rm ~/.my.cnf
-	rm ~/.grc
-	rm ~/.grcat
-	rm ~/grc.conf
-	rm ~/bin/grc
-	rm ~/bin/grcat
+	rm -f ~/.my.cnf
+	rm -f ~/.grc
+	rm -f ~/.grcat
+	rm -f ~/grc.conf
+	rm -f ~/bin/grc
+	rm -f ~/bin/grcat
 
 .PHONY: all \
 	install-git \

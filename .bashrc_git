@@ -1,0 +1,17 @@
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+[ -f ~/.home/git-completion.bash ] && source ~/.home/git-completion.bash
+
+# https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+[ -f ~/.home/git-prompt.sh ] && source ~/.home/git-prompt.sh
+
+if [ -n "$_OLD_VIRTUAL_PS1" ] ; then
+	PS1="$_OLD_VIRTUAL_PS1"
+	export PS1
+	unset _OLD_VIRTUAL_PS1
+fi
+_OLD_VIRTUAL_PS1="$PS1"
+PS1="$(echo $_OLD_VIRTUAL_PS1 | sed 's/]\(.*\)$/]$(__git_ps1 "(%s)")\1 /g')"
+export PS1
+
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWCOLORHINTS=1

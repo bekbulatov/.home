@@ -1,5 +1,3 @@
-# .bashrc
-
 export HISTFILESIZE=1000000000
 export HISTSIZE=1000000
 export HISTIGNORE="&:cd:ls:[bf]g:exit:bash:[cxh]:a\ "
@@ -16,12 +14,3 @@ shopt -s cmdhist
 
 export EDITOR=vim
 export PAGER=less
-
-# bash aliases
-[ -f ~/.bashrc_aliases ] && source ~/.bashrc_aliases
-
-# bash functions
-[ -f ~/.bashrc_functions ] && source ~/.bashrc_functions
-
-# local bash settings
-[ -f ~/.bashrc_local ] && source ~/.bashrc_local

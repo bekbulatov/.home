@@ -36,6 +36,9 @@ Plugin 'scrooloose/syntastic'
 " HTML
 	Plugin 'othree/html5.vim'
 
+" Markdown
+	Plugin 'plasticboy/vim-markdown'
+
 call vundle#end()
 filetype plugin indent on
 

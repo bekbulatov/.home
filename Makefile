@@ -7,14 +7,14 @@ install-git:
 	ln -sf ~/.home/.gitignore ~/.gitignore
 	mkdir -p ~/bin
 	ln -sf ~/.home/bin/diff-highlight ~/bin/diff-highlight
-	echo "[ -f ~/.home/.bashrc_git ] && source ~/.home/.bashrc_git" >> ~/.bashrc
+	echo "[ -f ~/.home/.bashrc_git ] && source ~/.home/.bashrc_git" >> ~/.bash_profile
 
 uninstall-git:
 	rm -f ~/.gitconfig
 	rm -f ~/.gitignore
 	rm -f ~/bin/diff-highlight
 	[ "$(ls -A ~/bin)" ] || rm -r ~/bin
-	sed -i '/\.bashrc_git/d' ~/.bashrc
+	sed -i '/\.bashrc_git/d' ~/.bash_profile
 
 install-vim:
 	ln -sf ~/.home/.vimrc ~/.vimrc
@@ -56,10 +56,16 @@ uninstall-mysql:
 	[ "$(ls -A ~/bin)" ] || rm -r ~/bin
 
 install-python:
-	echo "[ -f ~/.home/.bashrc_python ] && source ~/.home/.bashrc_python" >> ~/.bashrc
+	echo "[ -f ~/.home/.bashrc_python ] && source ~/.home/.bashrc_python" >> ~/.bash_profile
 
 uninstall-python:
-	sed -i '/\.bashrc_python/d' ~/.bashrc
+	sed -i '/\.bashrc_python/d' ~/.bash_profile
+
+install-bash:
+	echo "[ -f ~/.home/.bashrc_bash ] && source ~/.home/.bashrc_bash" >> ~/.bash_profile
+
+uninstall-bash:
+	sed -i '/\.bashrc_bash/d' ~/.bash_profile
 
 .PHONY: all           \
 	install-git       \
@@ -73,11 +79,6 @@ uninstall-python:
 	install-mysql     \
 	uninstall-mysql   \
 	install-python    \
-	uninstall-python
-
-# TODO:
-# ln -sf ~/.home/.bashrc_aliases    ~/.bashrc_aliases
-# ln -sf ~/.home/.bashrc_custom     ~/.bashrc_custom
-# ln -sf ~/.home/.bashrc_functions  ~/.bashrc_functions
-# ln -sf ~/.home/.config            ~/.config
-# ln -sf ~/.home/sublime-text-2     ~/sublime-text-2
+	uninstall-python  \
+	install-bash      \
+	uninstall-bash

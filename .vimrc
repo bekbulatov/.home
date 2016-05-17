@@ -15,9 +15,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'sjl/gundo.vim'
 
-nnoremap <F5> :GundoToggle<CR>
-map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
 Plugin 'scrooloose/syntastic'
 
 " Interface
@@ -32,6 +29,10 @@ Plugin 'scrooloose/syntastic'
 	Plugin 'nvie/vim-flake8'
 	Plugin 'python.vim'
 
+" Ruby
+	Plugin 'vim-ruby/vim-ruby'
+	Plugin 'ngmy/vim-rubocop'
+
 " Go
 	Plugin 'fatih/vim-go'
 
@@ -40,6 +41,7 @@ Plugin 'scrooloose/syntastic'
 
 " Markdown
 	Plugin 'plasticboy/vim-markdown'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -71,17 +73,15 @@ set smartcase
 set wrap "Переносим на другую строчку
 set linebreak "Разрываем строки
 
-set cursorline          " Подсветка строки, в которой находится в данный момент курсор
+set cursorline " Подсветка строки, в которой находится в данный момент курсор
 set splitbelow " новый сплит будет ниже текущего :sp
 set splitright " новый сплит будет правее текущего :vsp
 
 
 " tabulation settings
 " -------------------
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
 set noexpandtab
+set tabstop=4 softtabstop=4 shiftwidth=4
 set smarttab
 set autoindent
 
@@ -89,6 +89,8 @@ autocmd FileType python setlocal expandtab " convert tabs to spaces
 autocmd BufRead,BufNewFile *.html if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 autocmd BufRead,BufNewFile *.xml if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 
+autocmd FileType ruby setlocal expandtab " convert tabs to spaces
+autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -145,9 +147,6 @@ imap <tab> <c-r>=InsertTabWrapper()<CR>
        endfunction
 
 
-
-
-
 " NERDTree settings
 " -----------------
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
@@ -156,9 +155,21 @@ let NERDTreeIgnore = ['\.pyc$', '\.pyo$'] " Ignore files on NERDTree
 map <leader>f :NERDTreeToggle<CR> " toggle by \f
 
 
+" Gundo settings
+" --------------
+nnoremap <F5> :GundoToggle<CR>
+" map <F4> [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+
 " flake8 settings
 " ---------------
 " autocmd BufWritePost *.py call Flake8()
+
+
+" Rubocop settings
+" ---------------
+let g:vimrubocop_keymap = 0
+map <buffer> <F7> :RuboCop<CR>
 
 
 " MiniBufExpl

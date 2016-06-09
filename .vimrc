@@ -42,6 +42,9 @@ Plugin 'scrooloose/syntastic'
 " Markdown
 	Plugin 'plasticboy/vim-markdown'
 
+" Puppet
+	Plugin 'rodjek/vim-puppet'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -89,8 +92,8 @@ autocmd FileType python setlocal expandtab " convert tabs to spaces
 autocmd BufRead,BufNewFile *.html if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 autocmd BufRead,BufNewFile *.xml if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 
-autocmd FileType ruby setlocal expandtab " convert tabs to spaces
-autocmd FileType ruby setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType cucumber setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start

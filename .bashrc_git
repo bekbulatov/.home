@@ -1,8 +1,8 @@
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-[ -f ~/.home/git/git-completion.bash ] && source ~/.home/git-completion.bash
+[ -f ~/.home/git/git-completion.bash ] && source ~/.home/git/git-completion.bash
 
 # https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-[ -f ~/.home/git/git-prompt.sh ] && source ~/.home/git-prompt.sh
+[ -f ~/.home/git/git-prompt.sh ] && source ~/.home/git/git-prompt.sh
 
 if [ -n "$_OLD_VIRTUAL_PS1" ] ; then
 	PS1="$_OLD_VIRTUAL_PS1"

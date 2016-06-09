@@ -10,7 +10,7 @@ export GITCONFIG_BODY
 install-git:
 	mkdir -p ~/bin
 	ln -sf ~/.home/bin/diff-highlight ~/bin/diff-highlight
-	echo "[ -f ~/.home/.bashrc_git ] && source ~/.home/.bashrc_git" >> ~/.bash_profile
+	echo '[ -f ~/.home/.bashrc_git ] && source ~/.home/.bashrc_git' >> ~/.bash_profile
 	echo "$$GITCONFIG_BODY" >> ~/.gitconfig
 
 uninstall-git:
@@ -57,16 +57,28 @@ uninstall-mysql:
 	rm -f ~/grc.conf
 	rm -f ~/bin/grc
 	rm -f ~/bin/grcat
-	[ "$(ls -A ~/bin)" ] || rm -r ~/bin
+	find ~/bin -type d -empty -delete
 
 install-python:
-	echo "[ -f ~/.home/.bashrc_python ] && source ~/.home/.bashrc_python" >> ~/.bash_profile
+	echo '[ -f ~/.home/.bashrc_python ] && source ~/.home/.bashrc_python' >> ~/.bash_profile
 
 uninstall-python:
 	sed -i '/\.bashrc_python/d' ~/.bash_profile
 
+install-ruby:
+	@type rbenv2 >/dev/null 2>&1 || { echo >&2 "rbenv is not installed. Aborting."; exit 1; }
+	git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
+	git clone https://github.com/tpope/rbenv-aliases.git ~/.rbenv/plugins/rbenv-aliases
+	rbenv alias --auto
+	echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+
+uninstall-ruby:
+	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash
+	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash
+	sed -i '/rbenv/d' ~/.bash_profile
+
 install-bash:
-	echo "[ -f ~/.home/.bashrc_bash ] && source ~/.home/.bashrc_bash" >> ~/.bash_profile
+	echo '[ -f ~/.home/.bashrc_bash ] && source ~/.home/.bashrc_bash' >> ~/.bash_profile
 
 uninstall-bash:
 	sed -i '/\.bashrc_bash/d' ~/.bash_profile
@@ -84,5 +96,7 @@ uninstall-bash:
 	uninstall-mysql   \
 	install-python    \
 	uninstall-python  \
+	install-ruby      \
+	uninstall-ruby    \
 	install-bash      \
 	uninstall-bash

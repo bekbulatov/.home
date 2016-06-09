@@ -2,19 +2,22 @@ all:
 	@grep "^install" Makefile | cut -d ":" -f 1
 	@echo "Select an appropriate install target from the above list"
 
+define GITCONFIG_BODY
+[include]
+	path = ~/.home/git/.gitconfig
+endef
+export GITCONFIG_BODY
 install-git:
-	ln -sf ~/.home/.gitconfig ~/.gitconfig
-	ln -sf ~/.home/.gitignore ~/.gitignore
 	mkdir -p ~/bin
 	ln -sf ~/.home/bin/diff-highlight ~/bin/diff-highlight
 	echo "[ -f ~/.home/.bashrc_git ] && source ~/.home/.bashrc_git" >> ~/.bash_profile
+	echo "$$GITCONFIG_BODY" >> ~/.gitconfig
 
 uninstall-git:
-	rm -f ~/.gitconfig
-	rm -f ~/.gitignore
 	rm -f ~/bin/diff-highlight
-	[ "$(ls -A ~/bin)" ] || rm -r ~/bin
+	[ "$(ls -A ~/bin)" ] || rm -rf ~/bin
 	sed -i '/\.bashrc_git/d' ~/.bash_profile
+	tac ~/.gitconfig | sed '/\/\.home\/git\/\.gitconfig/I,+2 d' | tac > ~/.gitconfig.bak && mv ~/.gitconfig.bak ~/.gitconfig
 
 install-vim:
 	ln -sf ~/.home/.vimrc ~/.vimrc

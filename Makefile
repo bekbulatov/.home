@@ -15,9 +15,10 @@ install-git:
 
 uninstall-git:
 	rm -f ~/bin/diff-highlight
-	[ "$(ls -A ~/bin)" ] || rm -rf ~/bin
+	find ~/bin -type d -empty -delete
 	sed -i '/\.bashrc_git/d' ~/.bash_profile
 	tac ~/.gitconfig | sed '/\/\.home\/git\/\.gitconfig/I,+2 d' | tac > ~/.gitconfig.bak && mv ~/.gitconfig.bak ~/.gitconfig
+	[ -s ~/.gitconfig ] || rm ~/.gitconfig
 
 install-vim:
 	ln -sf ~/.home/.vimrc ~/.vimrc

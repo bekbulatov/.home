@@ -12,6 +12,7 @@ Install necessary modules
 	make install-git
 	make install-mysql
 	make install-python
+	make install-ruby
 	make install-screen
 	make install-tmux
 	make install-vim

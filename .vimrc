@@ -32,6 +32,7 @@ Plugin 'scrooloose/syntastic'
 " Ruby
 	Plugin 'vim-ruby/vim-ruby'
 	Plugin 'ngmy/vim-rubocop'
+	Plugin 'tpope/vim-cucumber'
 
 " Go
 	Plugin 'fatih/vim-go'
@@ -94,6 +95,7 @@ autocmd BufRead,BufNewFile *.xml if search('{{') > 0  || search('{%') > 0 | set 
 
 autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 autocmd FileType cucumber setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start

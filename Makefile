@@ -66,7 +66,7 @@ uninstall-python:
 	sed -i '/\.bashrc_python/d' ~/.bash_profile
 
 install-ruby:
-	@type rbenv2 >/dev/null 2>&1 || { echo >&2 "rbenv is not installed. Aborting."; exit 1; }
+	@type rbenv >/dev/null 2>&1 || { echo >&2 "rbenv is not installed. Aborting."; exit 1; }
 	git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
 	git clone https://github.com/tpope/rbenv-aliases.git ~/.rbenv/plugins/rbenv-aliases
 	rbenv alias --auto

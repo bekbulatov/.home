@@ -70,7 +70,7 @@ install-ruby:
 	git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
 	git clone https://github.com/tpope/rbenv-aliases.git ~/.rbenv/plugins/rbenv-aliases
 	rbenv alias --auto
-	echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+	echo 'eval "$$(rbenv init -)"' >> ~/.bash_profile
 
 uninstall-ruby:
 	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash

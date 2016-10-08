@@ -23,7 +23,8 @@ uninstall-git:
 install-vim:
 	ln -sf ~/.home/.vimrc ~/.vimrc
 	[ -d ~/.vim/bundle/Vundle.vim ] || git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	echo | echo | vim +PluginInstall +PluginUpdate +qall &>/dev/null
+	# echo | echo | vim +PluginInstall +PluginUpdate +qall &>/dev/null
+	vim -c 'PluginInstall' -c 'PluginUpdate' -c 'qa!'
 
 uninstall-vim:
 	rm -f ~/.vimrc

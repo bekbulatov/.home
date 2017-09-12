@@ -46,6 +46,8 @@ Plugin 'scrooloose/syntastic'
 " Puppet
 	Plugin 'rodjek/vim-puppet'
 
+" Terraform
+	Plugin 'hashivim/vim-terraform'
 
 call vundle#end()
 filetype plugin indent on

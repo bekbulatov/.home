@@ -60,9 +60,12 @@ uninstall-mysql:
 	find ~/bin -type d -empty -delete
 
 install-python:
+	mkdir -p ~/.config
+	ln -sf ~/.home/.config/flake8 ~/.config/flake8
 	echo '[ -f ~/.home/.bashrc_python ] && source ~/.home/.bashrc_python' >> ~/.bash_profile
 
 uninstall-python:
+	find ~/.config -type d -empty -delete
 	sed -i '/\.bashrc_python/d' ~/.bash_profile
 
 install-ruby:

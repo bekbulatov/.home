@@ -9,7 +9,7 @@ endef
 export GITCONFIG_BODY
 install-git:
 	mkdir -p ~/bin
-	ln -sf ~/.home/bin/diff-highlight ~/bin/diff-highlight
+	ln -sf ~/.home/git/bin/diff-highlight ~/bin/diff-highlight
 	echo '[ -f ~/.home/.bashrc_git ] && source ~/.home/.bashrc_git' >> ~/.bash_profile
 	echo "$$GITCONFIG_BODY" >> ~/.gitconfig
 
@@ -42,13 +42,13 @@ uninstall-screen:
 	rm -f ~/.screenrc
 
 install-mysql:
-	ln -sf ~/.home/.my.cnf ~/.my.cnf
-	ln -sf ~/.home/.grc ~/.grc
-	ln -sf ~/.home/.grcat ~/.grcat
-	ln -sf ~/.home/grc.conf ~/grc.conf
+	ln -sf ~/.home/mysql/.my.cnf ~/.my.cnf
+	ln -sf ~/.home/mysql/.grc ~/.grc
+	ln -sf ~/.home/mysql/.grcat ~/.grcat
+	ln -sf ~/.home/mysql/grc.conf ~/grc.conf
 	mkdir -p ~/bin
-	ln -sf ~/.home/bin/grc ~/bin/grc
-	ln -sf ~/.home/bin/grcat ~/bin/grcat
+	ln -sf ~/.home/mysql/bin/grc ~/bin/grc
+	ln -sf ~/.home/mysql/bin/grcat ~/bin/grcat
 
 uninstall-mysql:
 	rm -f ~/.my.cnf
@@ -61,7 +61,7 @@ uninstall-mysql:
 
 install-python:
 	mkdir -p ~/.config
-	ln -sf ~/.home/.config/flake8 ~/.config/flake8
+	ln -sf ~/.home/python/.config/flake8 ~/.config/flake8
 	echo '[ -f ~/.home/.bashrc_python ] && source ~/.home/.bashrc_python' >> ~/.bash_profile
 
 uninstall-python:

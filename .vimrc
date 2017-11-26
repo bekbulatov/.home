@@ -8,20 +8,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/vundle'
-Plugin 'jlanzarotta/bufexplorer'
-Plugin 'scrooloose/nerdtree'
 
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'sjl/gundo.vim'
 
-Plugin 'scrooloose/syntastic'
-
 " Interface
 	Plugin 'vim-airline/vim-airline'
 	Plugin 'vim-airline/vim-airline-themes'
-
+	Plugin 'jlanzarotta/bufexplorer'
 	Plugin 'altercation/vim-colors-solarized'
+	Plugin 'scrooloose/syntastic'
+	Plugin 'scrooloose/nerdtree'
 	Plugin 'tpope/vim-fugitive'
 
 " Python

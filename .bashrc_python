@@ -1,4 +1,4 @@
-export PYTHONSTARTUP=~/.home/.pythonstartup
+export PYTHONSTARTUP=~/.home/python/.pythonstartup
 
 # https://raw.githubusercontent.com/django/django/master/extras/django_bash_completion
-[ -f ~/.home/django_bash_completion ] && source ~/.home/django_bash_completion
+[ -f ~/.home/python/django_bash_completion ] && source ~/.home/python/django_bash_completion

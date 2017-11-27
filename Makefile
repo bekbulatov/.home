@@ -77,7 +77,7 @@ install-ruby:
 
 uninstall-ruby:
 	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash
-	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash
+	rm -rf ~/.rbenv/plugins/rbenv-gem-aliases
 	sed -i '/rbenv/d' ~/.bash_profile
 
 install-bash:
@@ -85,6 +85,20 @@ install-bash:
 
 uninstall-bash:
 	sed -i '/\.bashrc_bash/d' ~/.bash_profile
+
+install-cheat:
+	pip install --user cheat
+	mkdir -p ~/opt
+	git clone https://github.com/chrisallenlane/cheat.git ~/opt/cheat
+	ln -sf ~/opt/cheat/bin/cheat ~/bin/cheat
+	echo '[ -f ~/opt/cheat/cheat/autocompletion/cheat.bash ] && source ~/opt/cheat/cheat/autocompletion/cheat.bash' >> ~/.bash_profile
+
+uninstall-cheat:
+	mkdir -p ~/opt
+	rm -rf ~/bin/cheat ~/opt/cheat
+	sed -i '/cheat.bash/d' ~/.bash_profile
+	find ~/opt ~/bin -type d -empty -delete
+	pip uninstall cheat
 
 .PHONY: all           \
 	install-git       \
@@ -102,4 +116,6 @@ uninstall-bash:
 	install-ruby      \
 	uninstall-ruby    \
 	install-bash      \
-	uninstall-bash
+	uninstall-bash    \
+	install-cheat     \
+	uninstall-cheat

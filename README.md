@@ -9,6 +9,7 @@ Install necessary modules
 
 	cd ~/.home
 	make install-bash
+	make install-cheat
 	make install-git
 	make install-mysql
 	make install-python
@@ -17,6 +18,6 @@ Install necessary modules
 	make install-tmux
 	make install-vim
 
-Re-read it
+Reload `.bash_profile`
 
     source ~/.bash_profile

@@ -136,7 +136,7 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 autocmd FileType python setlocal expandtab " convert tabs to spaces
 autocmd FileType python setlocal colorcolumn=79
 autocmd FileType python :iabbrev <buffer> pdb import pdb; pdb.set_trace()
-autocmd FileType python :iabbrev <buffer> iab utf! # -*- coding: utf-8 -*-
+autocmd FileType python :iabbrev <buffer> utf! # -*- coding: utf-8 -*-
 autocmd BufRead,BufNewFile *.html if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 autocmd BufRead,BufNewFile *.xml if search('{{') > 0  || search('{%') > 0 | set filetype=htmldjango | endif
 
@@ -205,3 +205,6 @@ noremap <Right> <NOP>
 " function! CurDir()
 "    return expand('%:p:~')
 " endfunction
+
+
+set colorcolumn=80

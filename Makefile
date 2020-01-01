@@ -35,12 +35,6 @@ install-tmux:
 uninstall-tmux:
 	rm -f ~/.tmux.conf
 
-install-screen:
-	ln -sf ~/.home/.screenrc ~/.screenrc
-
-uninstall-screen:
-	rm -f ~/.screenrc
-
 install-mysql:
 	ln -sf ~/.home/mysql/.my.cnf ~/.my.cnf
 	ln -sf ~/.home/mysql/.grc ~/.grc
@@ -77,7 +71,7 @@ install-ruby:
 
 uninstall-ruby:
 	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash
-	rm -rf ~/.rbenv/plugins/rbenv-gem-rehash
+	rm -rf ~/.rbenv/plugins/rbenv-aliases
 	sed -i '/rbenv/d' ~/.bash_profile
 
 install-bash:
@@ -93,8 +87,6 @@ uninstall-bash:
 	uninstall-vim     \
 	install-tmux      \
 	uninstall-tmux    \
-	install-screen    \
-	uninstall-screen  \
 	install-mysql     \
 	uninstall-mysql   \
 	install-python    \

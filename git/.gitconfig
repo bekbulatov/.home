@@ -1,7 +1,3 @@
-[user]
-	email = alexander@bekbulatov.ru
-	name = bekbulatov
-
 [color]
 	ui = auto
 
@@ -28,27 +24,26 @@
 [alias]
 	co = checkout
 	ci = commit
-	up = remote update
 	st = status
 	br = branch
 	df = diff
-	# hist = log --pretty=format:'%Cred%h%Creset %ad | %Cgreen%s%d%Creset [%an]' --graph --date=short
 	hist = log --oneline --all --graph --decorate
 	mg = merge --no-ff
 	ph = push --tags
 	ls = ls-files
-	dta = !sh -c 'git tag -a \"$1\" -m \"`date +"%d.%m"`\"' -
-	dtl = !sh -c 'git tag | grep -P \"^\\d\" | sort -rV | head -n1' -
-	dtd = !sh -c 'git log $1..$2 --oneline | egrep -o \"\\w+-[0-9]+\" | sort | uniq' -
 
 [merge]
 	tool = vimdiff
+
 [http]
 	sslVerify = false
+
 [pack]
 	threads = 1
+
 [push]
 	default = simple
+
 [pager]
 	log = ~/bin/diff-highlight | less
 	show = ~/bin/diff-highlight | less

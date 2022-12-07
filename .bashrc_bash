@@ -2,6 +2,7 @@ export HISTFILESIZE=1000000000
 export HISTSIZE=1000000
 export HISTIGNORE="&:cd:ls:[bf]g:exit:bash:[cxh]:a\ "
 export HISTCONTROL=ignoreboth:erasedups  # don't put duplicate lines in the history
+export IGNOREEOF=2  # the shell will neglect 'Ctrl-D' key 2 times
 
 # append to the history file, don't overwrite it
 shopt -s histappend

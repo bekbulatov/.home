@@ -158,6 +158,10 @@ autocmd FileType yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 autocmd FileType json setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
+" SQL
+" ---------------
+
+autocmd BufRead,BufNewFile *.psql set filetype=sql
 
 " Hotkeys
 " ---------------

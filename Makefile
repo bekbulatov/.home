@@ -79,6 +79,16 @@ uninstall-bash:
 	sed -i '/\.bashrc_bash/d' ~/.bash_profile
 
 install-herdr:
+	mkdir -p ~/.config/herdr
+	@if [ -e ~/.config/herdr/config.toml ] && [ ! -L ~/.config/herdr/config.toml ]; then \
+		backup="$$HOME/.config/herdr/config.toml.bak"; \
+		if [ -e "$$backup" ] || [ -L "$$backup" ]; then \
+			backup="$$backup.$$(date +%Y%m%d%H%M%S)"; \
+		fi; \
+		mv ~/.config/herdr/config.toml "$$backup"; \
+		echo "Backed up existing Herdr config to $$backup"; \
+	fi
+	ln -sf ~/.home/herdr/config.toml ~/.config/herdr/config.toml
 	@grep -qxF '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' ~/.zshrc 2>/dev/null || \
 		echo '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' >> ~/.zshrc
 	@grep -qxF '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' ~/.bash_profile 2>/dev/null || \

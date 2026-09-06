@@ -1,0 +1,85 @@
+# Report the current Arc branch to Herdr as the custom workspace token
+# $arc_branch. Outside an Arc repository the token is cleared. This file can
+# be sourced by both Bash and Zsh.
+
+_HERDR_ARC_BRANCH_LAST=''
+_HERDR_ARC_BRANCH_INITIALIZED=0
+
+_herdr_arc_branch_precmd() {
+  local previous_status=$?
+
+  # The hook may also be loaded in ordinary terminals.
+  if [ -n "${HERDR_WORKSPACE_ID:-}" ] &&
+     command -v herdr >/dev/null 2>&1; then
+    local info=''
+    local branch=''
+
+    # arc info fails outside an Arc repository. Suppress the expected error and
+    # leave branch empty so any previously reported value gets cleared.
+    if command -v arc >/dev/null 2>&1 &&
+       command -v jq >/dev/null 2>&1 &&
+       info=$(command arc info --json 2>/dev/null); then
+      branch=$(
+        printf '%s' "$info" |
+          command jq -r '.branch // empty' 2>/dev/null
+      ) || branch=''
+    fi
+
+    # Avoid a socket request on every prompt when the branch did not change.
+    if [ "$_HERDR_ARC_BRANCH_INITIALIZED" -eq 0 ] ||
+       [ "$branch" != "$_HERDR_ARC_BRANCH_LAST" ]; then
+      if [ -n "$branch" ]; then
+        command herdr workspace report-metadata "$HERDR_WORKSPACE_ID" \
+          --source arc-vcs \
+          --token "arc_branch=$branch" >/dev/null 2>&1
+      else
+        command herdr workspace report-metadata "$HERDR_WORKSPACE_ID" \
+          --source arc-vcs \
+          --clear-token arc_branch >/dev/null 2>&1
+      fi
+
+      if [ $? -eq 0 ]; then
+        _HERDR_ARC_BRANCH_LAST=$branch
+        _HERDR_ARC_BRANCH_INITIALIZED=1
+      fi
+    fi
+  fi
+
+  # Bash uses the hook's status while expanding the prompt. Preserve the
+  # status of the command that ran before PROMPT_COMMAND.
+  if [ -n "${BASH_VERSION:-}" ]; then
+    return "$previous_status"
+  fi
+
+  return 0
+}
+
+_herdr_arc_branch_install_bash() {
+  local declaration=''
+  local item=''
+
+  declaration=$(declare -p PROMPT_COMMAND 2>/dev/null) || declaration=''
+  case "$declaration" in
+    'declare -a'*)
+      for item in "${PROMPT_COMMAND[@]}"; do
+        [ "$item" = '_herdr_arc_branch_precmd' ] && return 0
+      done
+      PROMPT_COMMAND=('_herdr_arc_branch_precmd' "${PROMPT_COMMAND[@]}")
+      ;;
+    *)
+      case ";${PROMPT_COMMAND:-};" in
+        *';_herdr_arc_branch_precmd;'*) ;;
+        *) PROMPT_COMMAND="_herdr_arc_branch_precmd${PROMPT_COMMAND:+; $PROMPT_COMMAND}" ;;
+      esac
+      ;;
+  esac
+}
+
+if [ -n "${ZSH_VERSION:-}" ]; then
+  autoload -Uz add-zsh-hook
+  # Keep repeated `source ~/.zshrc` calls idempotent.
+  add-zsh-hook -d precmd _herdr_arc_branch_precmd 2>/dev/null
+  add-zsh-hook precmd _herdr_arc_branch_precmd
+elif [ -n "${BASH_VERSION:-}" ]; then
+  _herdr_arc_branch_install_bash
+fi

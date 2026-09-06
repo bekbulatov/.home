@@ -79,8 +79,10 @@ uninstall-bash:
 	sed -i '/\.bashrc_bash/d' ~/.bash_profile
 
 install-herdr:
-	@grep -qxF '[ -f ~/.home/herdr/arc-branch.zsh ] && source ~/.home/herdr/arc-branch.zsh' ~/.zshrc 2>/dev/null || \
-		echo '[ -f ~/.home/herdr/arc-branch.zsh ] && source ~/.home/herdr/arc-branch.zsh' >> ~/.zshrc
+	@grep -qxF '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' ~/.zshrc 2>/dev/null || \
+		echo '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' >> ~/.zshrc
+	@grep -qxF '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' ~/.bash_profile 2>/dev/null || \
+		echo '[ -f ~/.home/herdr/arc-branch.bash-zsh ] && source ~/.home/herdr/arc-branch.bash-zsh' >> ~/.bash_profile
 
 .PHONY: all           \
 	install-git       \

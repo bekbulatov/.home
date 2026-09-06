@@ -1,0 +1,18 @@
+onboarding = false
+
+[ui.sound]
+enabled = false
+
+[keys]
+previous_tab = ["prefix+p", "shift+left"]
+next_tab = ["prefix+n", "shift+right"]
+last_pane = "prefix+backtick"
+
+[experimental]
+switch_ascii_input_source_in_prefix = true
+
+[ui.sidebar.spaces]
+rows = [
+	["state_icon", "workspace"],
+	["branch", "$arc_branch", "git_status"],
+]
